@@ -1,9 +1,10 @@
+{"api":"site", "resource":"/item/{sku}", "httpMethod":"GET", "statusCode":"200"}
 <html>
     <head>
-        <dokan:view api="site" resource="/item/{sku}" httpMethod="GET" statusCode="200" />
         <title>$input.path('$.name') | Online Store</title>
     </head>
     <body>
         <h1>$input.path('$.name')</h1>
+        <p>$input.path('$.description')</p>
     </body>
 </html>

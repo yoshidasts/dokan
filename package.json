@@ -1,0 +1,25 @@
+{
+  "name": "dokan",
+  "version": "0.0.0",
+  "description": "Server-less MVC framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yoshidasts/dokan.git"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "lambda",
+    "aws"
+  ],
+  "author": "YOSHIDA Satoshi",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/yoshidasts/dokan/issues"
+  },
+  "homepage": "https://github.com/yoshidasts/dokan#readme"
+}
