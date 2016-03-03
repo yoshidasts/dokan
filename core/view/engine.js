@@ -39,8 +39,15 @@ exports.handler = function(event, context){
                                 },
                                 function(err, data) {
                                     console.log(data);
-                                    context.done(err, data);
-                            });
+                                    apigateway.createDeployment({
+                                        restApiId: apiId,
+                                        stageName: 'test'
+                                    }, function(err, data) {
+                                        console.log(data)
+                                        context.done(err, data);
+                                    });
+                                }
+                            );
                         }
                     });
                 }
