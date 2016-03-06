@@ -1,0 +1,52 @@
+{"api":"site", "resource":"/list/{section}", "httpMethod":"GET", "statusCode":"200"}
+#set($itemList = $input.path('$.items'))
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0, user-scalable=1" name="viewport">
+	<title>$input.path('$.name') | Online Store</title>
+	<link rel="stylesheet" href="//s3.amazonaws.com/dokan/public/css/dokan.css">
+</head>
+<body id="$subcode" class="store itemList">
+
+	<header>
+		<div id="title">Onlie Store</div>
+		<ul>
+			<li id="menu">Menu</li>
+		    <li id="search">Search</li>
+            <li id="cart"><a href="/test/cart/">Cart</a></li>
+        </li>
+    </header>
+
+    <div class="content">
+    	<div id="main">
+    		<h1>$input.path('$.name')</h1>
+            
+            <div id="itemList">
+    		    <ul>
+#foreach($item in $itemList)
+						<li class="item">
+    						<a href="/test/item/$item.sku">
+    							<img src="$item.image" width="150" height="150" alt="$item.name">
+    							<br><span class="name">$item.name</span><br>
+								<span class="price">
+    #if($item.original_price == $item.selling_price)
+									$item.selling_price €
+    #else
+									<del>$item.original_price €</del>
+									<ins>$item.selling_price €</ins>
+    #end
+								</span>
+    						</a>
+   						</li>
+#end
+                </ul>
+            </div>
+        </div>
+    </div>
+
+	<footer>
+    	<p class="pagetop"><a href="#header">Top</a></li>
+		<p id="copyright">Copyright yoshidasts.com. Icon by <a href="https://icons8.com/" target="_blank">Icon8</a>.</p>
+	</footer>
+</html>

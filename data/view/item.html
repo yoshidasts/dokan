@@ -1,0 +1,73 @@
+{"api":"site", "resource":"/item/{sku}", "httpMethod":"GET", "statusCode":"200"}
+#set($item = $input.path('$'))
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport">
+    <link href="//s3.amazonaws.com/dokan/public/css/dokan.css" rel="stylesheet" type="text/css">
+    <title>$item.name | Online Store</title>
+</head>
+<body id="item" class="store item">
+	<header>
+		<div id="title">Onlie Store</div>
+		<ul>
+			<li id="menu">Menu</li>
+		    <li id="search">Search</li>
+            <li id="cart"><a href="/test/cart/">Cart</a></li>
+        </li>
+    </header>
+
+    <div class="content">
+    	<div id="main">
+            <div id="itemImage">
+                <img src="$item.image">
+            </div>
+            <div id="tag">
+                <h1>$item.name</h1>
+                <p id="description">$item.description</p>
+                <br>
+                <span class="price">Price: 
+#if($item.original_price == $item.selling_price)
+				    $item.selling_price €
+#else
+					<del>$item.original_price €</del>
+					<ins>$item.selling_price €</ins>
+#end
+				</span>
+            </div>
+            <h2>Color:</h2>
+            <ul id="colorPanel">
+#foreach($color in $item.color_list)
+    #if($color.sku == $item.sku)
+            <li id="$color.code" class="current">$color.name</li>
+    #else
+        #if($color.value == '#000000')
+            <li id="$color.code" style="background-color: $color.value;"><a href="/test/item/$color.sku" style="color:#ffffff;">$color.name</a></li>
+        #else
+            <li id="$color.code" style="background-color: $color.value"><a href="/test/item/$color.sku">$color.name</a></li>
+        #end
+    #end
+#end
+            </ul>
+            <h2>Size:</h2>
+            <ul id="sizePanel">
+#foreach($size in $item.size_list)
+    #if($size.sku == $item.sku)
+            <li id="$size.code" class="current">$size.name</li>
+    #else
+            <li id="$size.code"><a href="/test/item/$size.sku">$size.name</a></li>
+    #end
+#end
+            </ul>
+            <div id="cartButton">
+                <input id="addCart" type="button" value="Buy now!">
+            </div>
+        </div>
+    </div>
+        
+	<footer>
+    	<p class="pagetop"><a href="#header">Top</a></li>
+		<p id="copyright">Copyright yoshidasts.com. Icon by <a href="https://icons8.com/" target="_blank">Icon8</a>.</p>
+	</footer>
+</body>
+</html>
