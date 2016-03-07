@@ -1,17 +1,14 @@
-{"api":"site", "resource":"/section/{section}", "httpMethod":"GET", "statusCode":"200"}
-#set($code = $input.params().path.section)
-#set($section = $input.path('$')[$code])
+{"api":"site", "resource":"/", "httpMethod":"GET", "statusCode":"200"}
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1.0, user-scalable=1" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=1" name="viewport">
     <link href="//s3.amazonaws.com/dokan/public/css/dokan.css" rel="stylesheet" type="text/css">
-	<title>$section.name | Online Store</title>
+    <title>Online Store</title>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//s3.amazonaws.com/dokan/public/js/dokan.js"></script>
 </head>
-<body id="$code" class="store section">
-
+<body id="top" class="store">
 	<header>
 		<div id="title"><a href="/test/">Onlie Store</a></div>
 		<ul>
@@ -27,17 +24,22 @@
 
     <div class="content">
     	<div id="main">
-    		<h1>$section.name</h1>
-    		<section id="subSection">
-    			<ul>
-#foreach($sub in $section.subsections)
-    				<li id="$sub.code"><a href="/test/list/$sub.code">$sub.name</a></li>
-#end
-    			</ul>
-    		</section>
-        </div>
+            <section id="mainView">
+                <ul>
+                    <li><img src="//s3.amazonaws.com/dokan/public/img/dokan.png">&nbsp;</a></li>
+                </ul>
+            </section>
+            <div class="section">
+    		    <ul id="subSection">
+    			    <li><a href="/test/section/A01">Women</a></li>
+    			    <li><a href="/test/section/A02">Men</a></li>
+    			    <li><a href="/test/section/A03">Kids & Maternity</a></li>
+    			    <li><a href="/test/section/A04">Accessories</a></li>
+			    </ul>
+            </div>
+    	</div>
     </div>
-
+        
 	<footer>
     	<p class="pagetop"><a href="#header">Top</a></li>
 		<p id="copyright">Copyright yoshidasts.com. Icon by <a href="https://icons8.com/" target="_blank">Icon8</a>.</p>

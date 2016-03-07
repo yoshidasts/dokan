@@ -5,29 +5,26 @@ ul {margin:0; padding: 0;}
 /* Header */
 header {width:100%;min-width:100%;height:50px;background-color:#f0f0f0;}
 header li { display:inline-block; }
-#menu,#search,#cart {position:absolute;	font-size:0;width:25px;height:25px;margin:10px;}
-#menu {top:0;left:0;background-image:url(//maxcdn.icons8.com/iOS7/PNG/25/User_Interface/menu_filled-25.png);}
-#search {top:0;right:60px;background-image:url(//maxcdn.icons8.com/iOS7/PNG/25/Very_Basic/search-25.png);}
-#cart {top:0;right:25px;background-image:url(//maxcdn.icons8.com/iOS7/PNG/25/Ecommerce/shopping_cart-25.png);}
+#menu,#search,#cart {position:absolute;	font-size:0; width:25px; height:25px; margin:10px; }
+#menu {top:0;left:0; background-image:url(//maxcdn.icons8.com/iOS7/PNG/25/User_Interface/menu_filled-25.png);}
+#search {top:0;right:60px; background-image:url(//maxcdn.icons8.com/iOS7/PNG/25/Very_Basic/search-25.png);}
+#cart {top:0;right:25px; background-image:url(//maxcdn.icons8.com/iOS7/PNG/25/Ecommerce/shopping_cart-25.png);}
 #title { text-align: center; width:100%;padding-top:10px;}
+#menuList { position:absolute;left:0;top:50px;box-shadow: 0 2px 2px #c0c0c0;text-align:center;width:100%;background-color:#ffffff; }
+#menuList li { display:block;border-top:solid 1px #c0c0c0;padding:10px; }
 header:after { clear: both; }
 
 /* Main */
-.content { width: 100%; margin: 0 auto; padding: 0; overflow: hidden; position: relative; }
+.content { width: 100%; margin: 0 auto; padding: 0; }
 #main { margin: 10px 0 0; min-height: auto; }
-#main h1 { font-weight: bold; padding: 5px 10px; margin: 0; }
+#main h1 { font-weight: bold; padding: 5px  10px; margin: 0; }
 
 /* Footer */
-footer .pagetop {
-    text-align: right;
-    padding: 5px;
-}
-footer #copyright {
-    margin-bottom: 20px;
-    text-align: right;
-    padding: 5px;
-    border-top: 1px solid #E6E6E6;
-}
+footer .pagetop { text-align: right; padding: 5px; }
+footer #copyright { margin-bottom: 20px; text-align: right; padding: 5px; border-top: 1px solid #E6E6E6; }
+
+/* Store top page */
+#mainView img { width: 100%; }
 
 /* Section page */
 .section #subSection {
@@ -72,4 +69,8 @@ footer #copyright {
 #item li.current {border-color: #000000; background-color: #f0f0f0; font-weight: bold; }
 #item #cartButton {text-align: center; margin-top: 20px; }
 #item #addCart {width:300px; padding:10px 0; border: 3px solid #303030; background-color: #d0d0d0; }
+
+/* Login */
+#login ul#login_list { text-align: center;margin-top:20px; }
+#login ul#login_list #login_google {width:191px;height:46px; }
 
