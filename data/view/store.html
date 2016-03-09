@@ -6,6 +6,8 @@
     <link href="//s3.amazonaws.com/dokan/public/css/dokan.css" rel="stylesheet" type="text/css">
     <title>Online Store</title>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="//sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
     <script src="//s3.amazonaws.com/dokan/public/js/dokan.js"></script>
 </head>
 <body id="top" class="store">
@@ -19,6 +21,8 @@
         <ul id="menuList" style="display: none;">
             <li id="mnLogin"><a href="/test/login/">Login</a></li>
             <li id="mnRegistry"><a href="/test/member/registry/">Create an account</a></li>
+            <li id="mnMypage" style="display: none;"><a href="/test/member/">My page</a></li>
+            <li id="mnLogout" style="display: none;"><a href="/test/logout/">Logout</a></li>
         </ul>
     </header>
 

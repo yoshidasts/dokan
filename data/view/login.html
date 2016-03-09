@@ -6,6 +6,7 @@
     <link href="//s3.amazonaws.com/dokan/public/css/dokan.css" rel="stylesheet" type="text/css">
     <title>Login | Online Store</title>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="//sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
     <script src="//s3.amazonaws.com/dokan/public/js/dokan.js"></script>
     <script src="//s3.amazonaws.com/dokan/public/js/dokan_login.js"></script>
@@ -28,6 +29,7 @@
     	<div id="main">
             <ul id="login_list">
                 <li><input id="login_google" type="image" src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png" name="login_type" value="Login by Google account" onClick="login_google();"></li>
+                <li><input id="login_facebook" type="image" src="https://scontent.xx.fbcdn.net/hphotos-xaf1/t39.2178-6/851579_209602122530903_1060396115_n.png" name="login_type" value="Login by Facebook account" onClick="login_facebook();"></li>
             </ul>
         </div>
     </div>

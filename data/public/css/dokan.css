@@ -72,5 +72,6 @@ footer #copyright { margin-bottom: 20px; text-align: right; padding: 5px; border
 
 /* Login */
 #login ul#login_list { text-align: center;margin-top:20px; }
-#login ul#login_list #login_google {width:191px;height:46px; }
+#login #login_google,
+#login #login_facebook {width:191px;height:46px; }
 
