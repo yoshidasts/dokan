@@ -8,10 +8,20 @@
     <script src="//s3.amazonaws.com/dokan/public/js/dokan_login.js"></script>
     <script>
         var token = '$token.access_token';
-        var credentials = login_aws('graph.facebook.com', token);
-        console.log(credentials);
+        login_aws('graph.facebook.com', token, function(credentials){
+            console.log(credentials);
+            
+            var redirect_to;
+            if(localStorage.getItem('login_after')){
+                redirect_to = localStorage.getItem('login_after');
+                localStorage.removeItem('login_after');
+            }else{
+                redirect_to = '/test/';
+            }
+            //window.location.href = redirect_to;
+        });
     </script>
 </head>
-<body>あああ
+<body>
 </body>
 </html>

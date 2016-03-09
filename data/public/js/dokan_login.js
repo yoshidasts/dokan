@@ -16,25 +16,24 @@ var login_facebook = function(){
     if(!localStorage.getItem('login_after')){
         localStorage.setItem('login_after', '/test/list/A01');
     }
-    window.location.href = '//www.facebook.com/dialog/oauth?client_id='+ client_id + '&redirect_uri='+ callback;
+    window.location.href = 'https://www.facebook.com/dialog/oauth?client_id='+ client_id + '&redirect_uri='+ callback;
 };
 
 // Login by AWS Cognito
-var login_aws = function(provider, token_id){
+var login_aws = function(provider, token_id, callback){
     var region = 'us-east-1';
     var identity_pool_id = 'your_identity_pool';
+    var logins = JSON.parse('{"' + provider + '":"' + token_id + '"}');
     AWS.config.region = region;
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
         IdentityPoolId: identity_pool_id,
-        Logins: {
-            provider: token_id
+        Logins: logins
+    });
+    AWS.config.credentials.get(function(err){
+        if(err){
+            console.log(err);
+        }else{
+            callback(AWS.config.credentials);
         }
     });
-    console.log("Credentials");
-    console.log(AWS.config.credentials);
-    var credentials;
-    AWS.config.credentials.get(function(){
-        credentials = AWS.config.credentials;
-    });
-    return credentials;
 };
