@@ -1,9 +1,20 @@
+/*
+event
+{
+  "error": "",
+  "code": "code fomr Open ID Provider",
+  "provider": {
+      "client_id": "your_client_id_set_at_API_Gateway",
+      "client_secret": "your_client_secret_set_at_API_Gateway",
+      "redirect_uri": "your registered redirect_uri",
+      "hostname": "hostname of Open ID Provider,
+      "path": "Path of Open ID Provider"
+  }
+}
+
+*/
 var https = require('https');
 var querystring = require('querystring');
-
-var client_id = '1046385356949-ltngj67di8jqq433dhcemajhk1jblfeu.apps.googleusercontent.com';
-var client_secret = 'uTE9iPbIjV3XXl69tFRr7-QZ';
-var callback = 'https://la1o8dfztl.execute-api.us-east-1.amazonaws.com/test/login/google';
 
 exports.handler = function(event, context){
     if(event.error !== ''){
@@ -13,14 +24,15 @@ exports.handler = function(event, context){
         var data = '';
         var postData = querystring.stringify({
             'code' : event.code,
-            'client_id': client_id,
-            'client_secret': client_secret,
-            'redirect_uri': callback,
+            'client_id': event.provider.client_id,
+            'client_secret': event.provider.client_secret,
+            'redirect_uri': event.redirect_uri,
             'grant_type': 'authorization_code'
         });
+        console.log("Post Datra: " + postData);
         var req = https.request({
-            hostname: 'www.googleapis.com',
-            path: '/oauth2/v4/token',
+            hostname: event.provider.hostname,
+            path: event.provider.path,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -34,7 +46,7 @@ exports.handler = function(event, context){
             res.on('end', function() {
                 var token = JSON.parse(data);
                 if(token.error){
-                    context.done(token.error, event);
+                    context.done(JSON.stringify(token.error), event.code);
                 }else{
                     context.done(null, token);
                 }
@@ -43,7 +55,7 @@ exports.handler = function(event, context){
 
         req.on('error', function(e){
             console.log(e);
-            context.done(e, event);
+            context.done(e, event.code);
         });
         
         req.write(postData);
