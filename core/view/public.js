@@ -1,3 +1,9 @@
+/*
+
+Set "event source" to the path of the public contents.
+
+*/
+
 var aws = require('aws-sdk');
 var s3 = new aws.S3();
 
