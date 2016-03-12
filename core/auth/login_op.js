@@ -6,19 +6,25 @@ event
   "provider": {
       "client_id": "your_client_id_set_at_API_Gateway",
       "client_secret": "your_client_secret_set_at_API_Gateway",
-      "redirect_uri": "your registered redirect_uri",
       "hostname": "hostname of Open ID Provider,
       "path": "Path of Open ID Provider"
+  },
+  "redirect_uri": "your registered redirect_uri",
+  "cognito":{
+    "region": "region of your AWS",
+    "identity_pool_id": "Identity pool id of your Cognito"
   }
 }
 
 */
 var https = require('https');
 var querystring = require('querystring');
+var AWS = require('aws-sdk');
 
 exports.handler = function(event, context){
-    if(event.error !== ''){
-        context.done(err, event);
+    console.log('Provider: '+ event.provider.hostname);
+    if(event.error){
+        context.done(event.error, event.code);
     }else{
         var err;
         var data = '';
@@ -29,7 +35,9 @@ exports.handler = function(event, context){
             'redirect_uri': event.redirect_uri,
             'grant_type': 'authorization_code'
         });
-        console.log("Post Datra: " + postData);
+        console.log("Post Data: " + postData);
+        
+        var mime;
         var req = https.request({
             hostname: event.provider.hostname,
             path: event.provider.path,
@@ -39,16 +47,38 @@ exports.handler = function(event, context){
                 'Content-Length': postData.length
             }
         }, function(res) {
+            mime = res.headers['content-type'].split(';')[0];
             res.setEncoding('utf8');
             res.on('data', function(chunk){
                 data = data + chunk;
             });
             res.on('end', function() {
-                var token = JSON.parse(data);
-                if(token.error){
-                    context.done(JSON.stringify(token.error), event.code);
+                console.log('Content-type: ' + mime);
+                console.log('Received: ' + data);
+                var token;
+                if(mime == 'application/json'){
+                    token = JSON.parse(data);
                 }else{
-                    context.done(null, token);
+                    token = querystring.parse(data);
+                }
+                if(token.error){
+                    console.log(token.error);
+                    context.done(token.error, event.code);
+                }else{
+                    var logins = JSON.parse('{"' + event.provider.hostname + '":"' + token.access_token + '"}');
+                    AWS.config.region = event.cognito.region;
+                    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                        IdentityPoolId: event.cognito.identity_pool_id,
+                        Logins: logins
+                    });
+                    AWS.config.credentials.get(function(err){
+                        if(err){
+                            context.done(err);
+                        }else{
+                            console.log(AWS.config.credentials);
+                            context.done(null,logins);
+                        }
+                    });
                 }
             });
         });
