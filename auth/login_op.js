@@ -4,6 +4,7 @@ event
   "error": "",
   "code": "code fomr Open ID Provider",
   "provider": {
+      "provider_name": "accounts.google.com | graph.facebook.com",
       "client_id": "your_client_id_set_at_API_Gateway",
       "client_secret": "your_client_secret_set_at_API_Gateway",
       "hostname": "hostname of Open ID Provider,
@@ -65,7 +66,12 @@ exports.handler = function(event, context){
                     console.log(token.error);
                     context.done(token.error, event.code);
                 }else{
-                    var logins = JSON.parse('{"' + event.provider.hostname + '":"' + token.access_token + '"}');
+                    var logins;
+                    if(token.id_token){
+                        logins = JSON.parse('{"' + event.provider.provider_name + '":"' + token.id_token + '"}');
+                    }else{
+                        logins = JSON.parse('{"' + event.provider.provider_name + '":"' + token.access_token + '"}');
+                    }
                     AWS.config.region = event.cognito.region;
                     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
                         IdentityPoolId: event.cognito.identity_pool_id,
