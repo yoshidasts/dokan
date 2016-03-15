@@ -1,0 +1,33 @@
+{
+  "api":        "dokan",
+  "resource":   "/logout",
+  "httpMethod": "POST",
+  "authorizationType": "NONE",
+  "apiKeyRequired": false,
+  "methodResponses": {
+    "200": {
+      "statusCode": "200",
+      "responseModels": {
+        "text/html": "Empty"
+      }
+    }
+  },
+  "methodIntegration": {
+    "type": "AWS",
+    "httpMethod": "POST",
+    "uri": "your_lambda_uri",
+    "requestTemplates": {
+      "application/json": "{\r\n  \"cognito\":{\r\n    \"region\": \"your cognito region\",\r\n    \"identity_pool_id\": \"your identity pool id\"\r\n  },\r\n  \"logins\": $input.path('$')}\r\n"
+    },    "cacheNamespace": "k4h2ga",
+    "cacheKeyParameters": [],
+    "integrationResponses": {
+      "200": {
+        "statusCode": "200",
+        "selectionPattern": "",
+        "responseTemplates": {
+          "text/html": ""
+        }
+      }
+    }
+  }
+}
