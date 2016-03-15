@@ -1,0 +1,38 @@
+{
+  "api":        "dokan",
+  "resource":   "/login/google",
+  "httpMethod": "GET",
+  "authorizationType": "NONE",
+  "apiKeyRequired": false,
+  "requestParameters": {
+    "method.request.querystring.code": false,
+    "method.request.querystring.error": false
+  },
+  "methodResponses": {
+    "200": {
+      "statusCode": "200",
+      "responseModels": {
+        "text/html": "Empty"
+      }
+    }
+  },
+  "methodIntegration": {
+    "type": "AWS",
+    "httpMethod": "POST",
+    "uri": "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-1:675431811480:function:dokan_login_op/invocations",
+    "requestTemplates": {
+      "application/json": "{\n#if($input.params('error') != '')\n    \"error\": {\n        \"error\": \"$input.params('error')\",\n        \"error_reason\": \"$input.params('error_reason')\",\n        \"error_description\": \"$input.params('error_description')\"\n    },\n#else\n    \"error\": null,\n#end\n    \"code\": \"$input.params('code')\",\n    \"provider\": {\n        \"provider_name\": \"accounts.google.com\",\n        \"client_id\": \"1046385356949-ltngj67di8jqq433dhcemajhk1jblfeu.apps.googleusercontent.com\",\n        \"client_secret\": \"LW2xYg2lKZkH2xMVfd5KgD66\",\n        \"hostname\": \"www.googleapis.com\",\n        \"path\": \"/oauth2/v4/token\"\n    },\n    \"redirect_uri\": \"https://la1o8dfztl.execute-api.us-east-1.amazonaws.com/test/login/google\",\n  \"cognito\":{\n    \"region\": \"us-east-1\",\n    \"identity_pool_id\": \"us-east-1:31498fa9-f706-43be-86a0-9c57eb815465\"\n  }\n}"
+    },
+    "cacheNamespace": "e42ytn",
+    "cacheKeyParameters": [],
+    "integrationResponses": {
+      "200": {
+        "statusCode": "200",
+        "selectionPattern": "",
+        "responseTemplates": {
+          "text/html": "{}"
+        }
+      }
+    }
+  }
+}

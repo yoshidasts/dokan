@@ -1,0 +1,33 @@
+{
+  "api":        "dokan",
+  "resource":   "/login",
+  "httpMethod": "GET",
+  "authorizationType": "NONE",
+  "apiKeyRequired": false,
+  "requestParameters": {},
+  "methodResponses": {
+    "200": {
+      "statusCode": "200",
+      "responseModels": {
+        "text/html": "Empty"
+      }
+    }
+  },
+  "methodIntegration": {
+    "type": "MOCK",
+    "requestTemplates": {
+      "application/json": "{\"statusCode\": 200}"
+    },
+    "cacheNamespace": "2lcw9c",
+    "cacheKeyParameters": [],
+    "integrationResponses": {
+      "200": {
+        "statusCode": "200",
+        "selectionPattern": "",
+        "responseTemplates": {
+          "text/html": "<html>\r\n<head>\r\n    <meta charset=\"utf-8\">\r\n    <meta content=\"width=device-width, initial-scale=1.0, user-scalable=1\" name=\"viewport\">\r\n    <link href=\"//s3.amazonaws.com/dokan/public/css/dokan.css\" rel=\"stylesheet\" type=\"text/css\">\r\n    <title>Login | Online Store</title>\r\n    <script src=\"//code.jquery.com/jquery-1.12.0.min.js\"></script>\r\n    <script src=\"//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js\"></script>\r\n    <script src=\"//sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js\"></script>\r\n    <script src=\"//s3.amazonaws.com/dokan/public/js/dokan.js\"></script>\r\n    <script src=\"//s3.amazonaws.com/dokan/public/js/dokan_login.js\"></script>\r\n</head>\r\n<body id=\"login\" class=\"store\">\r\n\t<header>\r\n\t\t<div id=\"title\"><a href=\"/test/\">Onlie Store</a></div>\r\n\t\t<ul>\r\n\t\t\t<li id=\"menu\">Menu</li>\r\n\t\t    <li id=\"search\">Search</li>\r\n            <li id=\"cart\"><a href=\"/test/cart/\">Cart</a></li>\r\n        </ul>\r\n        <ul id=\"menuList\" style=\"display: none;\">\r\n            <li id=\"mnLogin\"><a href=\"/test/login/\">Login</a></li>\r\n            <li id=\"mnRegistry\"><a href=\"/test/member/registry/\">Create an account</a></li>\r\n            <li id=\"mnMypage\" style=\"display: none;\"><a href=\"/test/member/\">My page</a></li>\r\n            <li id=\"mnLogout\" style=\"display: none;\"><a href=\"/test/logout/\">Logout</a></li>\r\n        </ul>\r\n    </header>\r\n\r\n    <div class=\"content\">\r\n    \t<div id=\"main\">\r\n            <ul id=\"login_list\">\r\n                <li><input id=\"login_google\" type=\"image\" src=\"https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png\" name=\"login_type\" value=\"Login by Google account\" onClick=\"login_google();\"></li>\r\n                <li><input id=\"login_facebook\" type=\"image\" src=\"https://scontent.xx.fbcdn.net/hphotos-xaf1/t39.2178-6/851579_209602122530903_1060396115_n.png\" name=\"login_type\" value=\"Login by Facebook account\" onClick=\"login_facebook();\"></li>\r\n                <!--\r\n                <li><input id=\"login_twitter\" type=\"image\" src=\"https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png\" name=\"login_type\" value=\"Login by Twitter account\" onClick=\"login_twitter();\"></li>\r\n                <li><input id=\"login_instagram\" type=\"button\" name=\"login_type\" value=\"Login by Instagram account\" onClick=\"login_instagram();\"></li>\r\n                <li><input id=\"login_paypal\" type=\"image\" src=\"https://www.paypalobjects.com/webstatic/en_US/developer/docs/lipp/loginwithpaypalbutton.png\" name=\"login_type\" value=\"Login by Paypal account\" onClick=\"login_paypal();\"></li>\r\n                <li><input id=\"login_weibo\" type=\"button\" name=\"login_type\" value=\"Login by Weibo account\" onClick=\"login_weibo();\"></li>\r\n                -->\r\n            </ul>\r\n        </div>\r\n        \r\n    </div>\r\n        \r\n\t<footer>\r\n    \t<p class=\"pagetop\"><a href=\"#header\">Top</a></li>\r\n\t\t<p id=\"copyright\">Copyright yoshidasts.com. Icon by <a href=\"https://icons8.com/\" target=\"_blank\">Icon8</a>.</p>\r\n\t</footer>\r\n</body>\r\n</html>"
+        }
+      }
+    }
+  }
+}

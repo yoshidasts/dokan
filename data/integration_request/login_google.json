@@ -1,0 +1,24 @@
+{
+#if($input.params('error') != '')
+    "error": {
+        "error": "$input.params('error')",
+        "error_reason": "$input.params('error_reason')",
+        "error_description": "$input.params('error_description')"
+    },
+#else
+    "error": null,
+#end
+    "code": "$input.params('code')",
+    "provider": {
+        "provider_name": "accounts.google.com",
+        "client_id": "1046385356949-ltngj67di8jqq433dhcemajhk1jblfeu.apps.googleusercontent.com",
+        "client_secret": "LW2xYg2lKZkH2xMVfd5KgD66",
+        "hostname": "www.googleapis.com",
+        "path": "/oauth2/v4/token"
+    },
+    "redirect_uri": "https://la1o8dfztl.execute-api.us-east-1.amazonaws.com/test/login/google",
+  "cognito":{
+    "region": "us-east-1",
+    "identity_pool_id": "us-east-1:31498fa9-f706-43be-86a0-9c57eb815465"
+  }
+}
