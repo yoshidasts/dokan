@@ -1,3 +1,4 @@
+var debug;
 $(function(){
     // Add Menu event on header
     $('#menu').on('click', function(obj){
@@ -27,12 +28,18 @@ $(function(){
             dataType: 'text/html',
             scriptCharset: 'utf-8',
             success : function(data) {
-                    console.log(data);
-                    $('html').html(data);
+                if(data.responseText){
+                    $('html').html(data.responseText);
+                }else{
+                    debug = data;
+                }
             },
             error : function(data) {
-                    console.log(data);
+                if(data.responseText){
                     $('html').html(data.responseText);
+                }else{
+                    debug = data;
+                }
             }
         });
         return false;
