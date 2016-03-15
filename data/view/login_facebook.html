@@ -3,14 +3,15 @@
 <html>
 <head>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="//sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
-    <script src="//s3.amazonaws.com/dokan/public/js/dokan_login.js"></script>
     <script>
-        var token = '$token.access_token';
-        login_aws('graph.facebook.com', token, function(credentials){
-            console.log(credentials);
-            
+        var token = $input.json('$');
+        if(token.errorMessage){
+            $(function(){
+                $('body').text('$token.errorMessage');
+            });
+        }else{
+            sessionStorage['aws.cognito.token'] = JSON.stringify(token);
             var redirect_to;
             if(localStorage.getItem('login_after')){
                 redirect_to = localStorage.getItem('login_after');
@@ -18,8 +19,8 @@
             }else{
                 redirect_to = '/test/';
             }
-            //window.location.href = redirect_to;
-        });
+            window.location.href = redirect_to;
+        }
     </script>
 </head>
 <body>

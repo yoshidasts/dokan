@@ -9,7 +9,8 @@ $(function(){
     });
     
     // Control Login/Logout button
-    if($.cookie("IdentityId") && $.cookie("IdentityId") != ''){
+    if(sessionStorage['aws.cognito.token']){
+        $('header').attr('class', 'login');
         $('#menuList #mnLogin').css('display', 'none');
         $('#menuList #mnRegistry').css('display', 'none');
         $('#menuList #mnMypage').css('display', 'block');
