@@ -1,0 +1,40 @@
+{
+  "api":        "dokan",
+  "resource":   "/login/facebook",
+  "httpMethod": "GET",
+  "authorizationType": "NONE",
+  "apiKeyRequired": false,
+  "requestParameters": {
+    "method.request.querystring.code": false,
+    "method.request.querystring.error": false,
+    "method.request.querystring.error_description": false,
+    "method.request.querystring.error_reason": false
+  },
+  "methodResponses": {
+    "200": {
+      "statusCode": "200",
+      "responseModels": {
+        "text/html": "Empty"
+      }
+    }
+  },
+  "methodIntegration": {
+    "type": "AWS",
+    "httpMethod": "POST",
+    "uri": "your_lambda_uri",
+    "requestTemplates": {
+      "application/json": "{\r\n#if($input.params('error') != '')\r\n    \"error\": {\r\n        \"error\": \"$input.params('error')\",\r\n        \"error_reason\": \"$input.params('error_reason')\",\r\n        \"error_description\": \"$input.params('error_description')\"\r\n    },\r\n#else\r\n    \"error\": null,\r\n#end\r\n    \"code\": \"$input.params('code')\",\r\n    \"provider\": {\r\n        \"provider_name\": \"graph.facebook.com\",\r\n        \"client_id\": \"your_client_id\",\r\n        \"client_secret\": \"your_client_secret\",\r\n        \"hostname\": \"graph.facebook.com\",\r\n        \"path\": \"/oauth/access_token\"\r\n    },\r\n    \"redirect_uri\": \"https://your_domain/login/facebook\",\r\n  \"cognito\":{\r\n    \"region\": \"your_cognito_region\",\r\n    \"identity_pool_id\": \"your_identity_pool_id\"\r\n  }\r\n}"
+    },
+    "cacheNamespace": "tj6qxs",
+    "cacheKeyParameters": [],
+    "integrationResponses": {
+      "200": {
+        "statusCode": "200",
+        "selectionPattern": "",
+        "responseTemplates": {
+          "text/html": ""
+        }
+      }
+    }
+  }
+}

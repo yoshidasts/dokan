@@ -1,0 +1,37 @@
+{
+  "api":        "dokan",
+  "resource":   "/list/{section}",
+  "httpMethod": "GET",
+  "authorizationType": "NONE",
+  "apiKeyRequired": false,
+  "requestParameters": {
+    "method.request.path.section": true
+  },
+  "methodResponses": {
+    "200": {
+      "statusCode": "200",
+      "responseModels": {
+        "text/html": "Empty"
+      }
+    }
+  },
+  "methodIntegration": {
+    "type": "AWS",
+    "httpMethod": "GET",
+    "uri": "arn:aws:apigateway:your_s3_region:s3:path/your_bucket/master/list/{section}.json",
+    "credentials": "arn:aws:iam::your_iam_role",
+    "requestParameters": {
+      "integration.request.path.section": "method.request.path.section"
+    },
+    "cacheNamespace": "bodgz8",
+    "cacheKeyParameters": [],
+    "integrationResponses": {
+      "200": {
+        "statusCode": "200",
+        "responseTemplates": {
+          "text/html": ""
+        }
+      }
+    }
+  }
+}

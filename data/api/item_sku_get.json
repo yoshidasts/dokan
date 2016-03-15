@@ -1,0 +1,37 @@
+{
+  "api":        "dokan",
+  "resource":   "/item/{sku}",
+  "httpMethod": "GET",
+  "authorizationType": "NONE",
+  "apiKeyRequired": false,
+  "requestParameters": {
+    "method.request.path.sku": true
+  },
+  "methodResponses": {
+    "200": {
+      "statusCode": "200",
+      "responseModels": {
+        "text/html": "Empty"
+      }
+    }
+  },
+  "methodIntegration": {
+    "type": "AWS",
+    "httpMethod": "GET",
+    "uri": "arn:aws:apigateway:your_s3_region:s3:path/your_bucket/master/item/{sku}.json",
+    "credentials": "arn:aws:iam::iam_role",
+    "requestParameters": {
+      "integration.request.path.sku": "method.request.path.sku"
+    },
+    "cacheNamespace": "at6n97",
+    "cacheKeyParameters": [],
+    "integrationResponses": {
+      "200": {
+        "statusCode": "200",
+        "responseTemplates": {
+          "text/html": ""
+        }
+      }
+    }
+  }
+}
