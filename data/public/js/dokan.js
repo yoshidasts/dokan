@@ -32,7 +32,7 @@ $(function(){
             },
             error : function(data) {
                     console.log(data);
-                    $('html').html(data);
+                    $('html').html(data.responseText);
             }
         });
         return false;
