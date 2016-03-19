@@ -1,3 +1,22 @@
+/*
+event
+{
+  "provider": {
+    "apiKey": "your api key",
+    "sharedSecret": "your api secret",
+    "hostname": "sandbox.api.visa.com"
+  },
+  "order": {
+    "amount": "0",
+    "currency": "USD",
+    "payment": {
+      "cardNumber": "4111111111111111",
+      "cardExpirationMonth": "10",
+      "cardExpirationYear": "2016"
+    }
+  }
+}    
+*/
 var crypto = require('crypto');
 var https = require('https');
 
