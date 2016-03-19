@@ -10,7 +10,7 @@ $(function(){
     });
     
     // Control Login/Logout button
-    if(sessionStorage['aws.cognito.token']){
+    if($.cookie('aws.cognito.token')){
         $('header').attr('class', 'login');
         $('#menuList #mnLogin').css('display', 'none');
         $('#menuList #mnRegistry').css('display', 'none');
@@ -23,7 +23,7 @@ $(function(){
         $.ajax({
             type : 'post',
             url : '/test/logout',
-            data : JSON.stringify(sessionStorage['aws.cognito.token']),
+            data : JSON.stringify($.cookie('aws.cognito.token')),
             contentType :'application/json',
             dataType: 'text/html',
             scriptCharset: 'utf-8',

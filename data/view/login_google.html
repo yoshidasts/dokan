@@ -3,6 +3,7 @@
 <html>
 <head>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="//sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
     <script>
         var token = $input.json('$');
@@ -11,7 +12,7 @@
                 $('body').text('$token.errorMessage');
             });
         }else{
-            sessionStorage['aws.cognito.token'] = JSON.stringify(token);
+            $.cookie('aws.cognito.token', JSON.stringify(token), { path: '/test', secure: true});
             var redirect_to;
             if(localStorage.getItem('login_after')){
                 redirect_to = localStorage.getItem('login_after');

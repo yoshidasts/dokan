@@ -71,6 +71,11 @@ footer #copyright { margin-bottom: 20px; text-align: right; padding: 5px; border
 #item #cartButton {text-align: center; margin-top: 20px; }
 #item #addCart {width:300px; padding:10px 0; border: 3px solid #303030; background-color: #d0d0d0; }
 
+/* Cart */
+cartItem li {list-style:none;}
+cartItem img {float:left; margin:5px 15px 5px 5px;}
+cartItem:after { clear:both; }
+
 /* Login */
 #login ul#login_list { text-align: center;margin-top:20px; }
 #login li input {width:191px;height:auto;margin:5px; }
