@@ -1,0 +1,79 @@
+{"api":"site", "resource":"/cart", "httpMethod":"GET", "statusCode":"200"}
+#set($cart = $input.path('$'))
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=1" name="viewport">
+    <link href="//s3.amazonaws.com/dokan/public/css/dokan.css" rel="stylesheet" type="text/css">
+    <title>Cart | Online Store</title>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="//sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
+    <script src="//s3.amazonaws.com/dokan/public/js/dokan.js"></script>
+    <script src="//s3.amazonaws.com/dokan/public/js/dokan_cart.js"></script>
+</head>
+<body id="cart" class="store cart">
+	<header>
+		<div id="title"><a href="/test/">Onlie Store</a></div>
+		<ul>
+			<li id="menu">Menu</li>
+		    <li id="search">Search</li>
+            <li id="cart"><a href="/test/cart/">Cart</a></li>
+        </ul>
+        <ul id="menuList" style="display: none;">
+            <li id="mnLogin"><a href="/test/login/">Login</a></li>
+            <li id="mnRegistry"><a href="/test/member/registry/">Create an account</a></li>
+            <li id="mnMypage" style="display: none;"><a href="/test/member/">My page</a></li>
+            <li id="mnLogout" style="display: none;"><a href="/test/logout/">Logout</a></li>
+        </ul>
+    </header>
+
+    <div class="content">
+        <h1>Cart</h1>
+    	<div id="main">
+            <section id="cartItem"><ul>
+                <li>
+                    <img src="https://maxcdn.icons8.com/iOS7/PNG/100/Clothing/coat-100.png">
+                    <h2>Jacket 0001 Black XS</h2>
+                    <span class="price">Price: 29.95 €</span>
+                </li>
+            </section>
+            <section id="payment">
+                <h2>Payment Option</h2>
+                <ul>
+                    <li id="visa-credit">
+                        <h3>Credit</h3>
+                        <dl>
+                            <dt>Card Number:</dt><dd><input id="payment-visa-number" type="text" value="4111111111111111"></dd>
+                            <dt>Expiration:</dt><dd><input id="payment-visa-exmonth" type="text" size="2" value="10">/<input id="payment-visa-exyear" type="text" value="2016" size="2"></dd>
+                            <dt class="dt-button"><input id="payment-visa" type="button" value="Pay by Credit on Visa"></dt>
+                        </dl>
+                    </li>
+                    <li id="paypal">
+                        <h3>Paypal</h3>
+                        <dl>
+                            <dt>Card Number:</dt><dd><input id="payment-visa-number" type="text" value="4111111111111111"></dd>
+                            <dt>Expiration:</dt><dd><input id="payment-visa-exmonth" type="text" size="2" value="10">/<input id="payment-visa-exyear" type="text" value="2016" size="2"></dd>
+                            <dt><input id="payment-visa" type="button" value="Pay by Credit on Visa"></dt>
+                        </dl>
+                    </li>
+                    <li id="applepay">
+                        <h3>Apple Pay</h3>
+                        <dl>
+                            <dt>Card Number:</dt><dd><input id="payment-visa-number" type="text" value="4111111111111111"></dd>
+                            <dt>Expiration:</dt><dd><input id="payment-visa-exmonth" type="text" size="2" value="10">/<input id="payment-visa-exyear" type="text" value="2016" size="2"></dd>
+                            <dt><input id="payment-visa" type="button" value="Pay by Credit on Visa"></dt>
+                        </dl>
+                    </li>
+                    </ul>
+            </section>
+        </div>
+    </div>
+        
+	<footer>
+    	<p class="pagetop"><a href="#header">Top</a></li>
+		<p id="copyright">Copyright yoshidasts.com. Icon by <a href="https://icons8.com/" target="_blank">Icon8</a>.</p>
+	</footer>
+</body>
+</html>
+            </ul></section>
