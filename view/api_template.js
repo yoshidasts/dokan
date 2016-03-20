@@ -1,3 +1,13 @@
+/*
+
+event s3 object will be set to mapping template of integration response.
+
+At first row, specify the target api method as json.
+{"api":"site", "resource":"/cart", "httpMethod":"GET", "statusCode":"200"}
+<html>
+</html>
+
+*/
     var aws = require('aws-sdk');
     var s3 = new aws.S3();
     var apigateway = new aws.APIGateway();

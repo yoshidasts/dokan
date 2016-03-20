@@ -33,3 +33,5 @@ node_modules
 .node_repl_history
 /data/api_dev
 /data/public/js_dev
+/conf/api_dev
+/public/js_dev

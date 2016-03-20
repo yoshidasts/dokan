@@ -7,9 +7,10 @@ $(function(){
         });
     }
     
-    // Add Credit payment to cart page
+    // Configure Payment on cart page
     if($('body#cart')){
         $(function(){
+            // Add Credit payment to cart page
             $('#payment-visa').on('click', function(obj){
                 var postBody  = {amount: "1", currency: "USD", payment: { cardExpirationMonth: $('#payment-visa-exmonth').attr('value'), cardExpirationYear: $('#payment-visa-exyear').attr('value'), cardNumber: $('#payment-visa-number').attr('value')}};
                 $.ajax({
@@ -30,6 +31,17 @@ $(function(){
                 });
             });
             
+            //VISA Checkout
+            $('head script').last().after('<script type="text/javascript">' +
+                'function onVisaCheckoutReady (){'+
+                'V.init({ apikey: "7O07VN664O10JW6A9ESS113p8sf9JeGzr6_2haC9F9m_ANtLM"});'+
+                'V.on("payment.success", function(payment) {console.log(payment); });'+
+                'V.on("payment.cancel", function(payment) {console.log(payment);  });'+
+                'V.on("payment.error", function(payment,error) {console.log(payment); });' +
+                '}</script>');
+            $('head script').last().after('<script type="text/javascript" src="//sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js"></script>');
+            
+            // Toggle button
             $("#payment li h3").on("click", function() {
                 $("#payment li dl:visible").slideToggle();
                 $(this).next().slideToggle();
@@ -37,3 +49,4 @@ $(function(){
         });
     }
 });
+

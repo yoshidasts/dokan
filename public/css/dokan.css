@@ -81,7 +81,8 @@ body#cart #payment li:hover { background-color:lightgray; }
 body#cart #payment li dl { display:none;}
 body#cart #payment li dt,body#cart #payment li dd { display:inline-block;}
 body#cart #payment dt.dt-button { text-align:center; width:100%; padding-top:10px; }
-body#cart #payment #payment-visa { padding:10px; }
+body#cart #payment #payment-visa,
+body#cart #payment #payment-visachekout { padding:10px; }
 body#cart #payment h2 { border-top: black solid 3px; padding-top: 5px; }
 body#cart #payment h3 { margin-top: 0; }
 
